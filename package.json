@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "deploy": "NODE_ENV=production webpack -p --config webpack.production.config.js"
+  },
+  "dependencies": {
+    "amcharts3": "git://github.com/amcharts/amcharts3",
+    "async": "1.4.2",
+    "axios": "0.6.0",
+    "babel-loader": "5.3.2",
+    "babel-plugin-object-assign": "1.2.1",
+    "classnames": "^2.2.3",
+    "d3": "^3.5.6",
+    "history": "^1.17.0",
+    "js-cookie": "^2.1.0",
+    "lodash": "^3.10.1",
+    "moment": "^2.10.6",
+    "react": "^0.14.2",
+    "react-d3-components": "^0.6.0",
+    "react-dom": "^0.14.2",
+    "react-router": "^1.0.0",
+    "reflux": "^0.3.0"
+  }
+}

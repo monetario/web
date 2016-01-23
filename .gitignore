@@ -5,6 +5,12 @@ __pycache__/
 # C extensions
 *.so
 
+.idea/
+
+# JS
+node_modules/
+static/js/dist/
+
 # Distribution / packaging
 .Python
 env/
