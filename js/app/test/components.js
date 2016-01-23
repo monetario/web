@@ -33,5 +33,5 @@ var TrainMain = React.createClass({
   }
 });
 
-module.exports = TrainMain;
+export default TrainMain;
 

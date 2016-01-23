@@ -3,12 +3,10 @@ import { render } from 'react-dom'
 import { Router, Route, IndexRoute, Link } from 'react-router'
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
-//import routes from './routes';
-import AdminApp from './app';
+import App from './app';
 import DashboardMain from './app/dashboard/components';
 import RecordsMain from './app/records/components';
 import TestMain from './app/test/components';
-//import DashboardMain from './app/dashboard/components';
 
 
 if (typeof window !== "undefined") {
@@ -17,7 +15,7 @@ if (typeof window !== "undefined") {
 
     render((
       <Router history={createBrowserHistory()}>
-        <Route path="/" component={AdminApp}>
+        <Route path="/" component={App}>
           <IndexRoute component={DashboardMain} />
           <Route path="/p/">
             <IndexRoute component={DashboardMain} />

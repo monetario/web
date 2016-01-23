@@ -215,4 +215,4 @@ var RecordsMain = React.createClass({
   }
 });
 
-module.exports = RecordsMain;
+export default RecordsMain;

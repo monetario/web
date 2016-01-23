@@ -7,7 +7,7 @@ import Reflux from 'reflux';
 import Cookies from 'js-cookie';
 
 
-var AdminApp = React.createClass({
+var App = React.createClass({
   componentDidMount() {
     if (Cookies.get('sidebar-collapse') === 'true') {
       document.body.classList.add('sidebar-collapse');
@@ -306,5 +306,5 @@ var AdminApp = React.createClass({
   }
 });
 
-module.exports = AdminApp;
+export default App;
 

@@ -105,4 +105,4 @@ var DashboardMain = React.createClass({
   }
 });
 
-module.exports = DashboardMain;
+export default DashboardMain;

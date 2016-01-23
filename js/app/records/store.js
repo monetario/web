@@ -59,4 +59,4 @@ var Store = Reflux.createStore({
 
 });
 
-module.exports = Store;
+export default Store;

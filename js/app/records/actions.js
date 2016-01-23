@@ -8,4 +8,4 @@ let Actions = Reflux.createActions([
   "loadUrl",
 ]);
 
-module.exports = Actions;
+export default Actions;

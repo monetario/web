@@ -7,4 +7,4 @@ let Actions = Reflux.createActions([
   "load",
 ]);
 
-module.exports = Actions;
+export default Actions;
