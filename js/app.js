@@ -2,7 +2,7 @@
 'use strict';
 
 import React from 'react';
-import { Router, Route, Link } from 'react-router'
+import {Router, Route, Link} from 'react-router'
 import Reflux from 'reflux';
 import Cookies from 'js-cookie';
 
@@ -22,8 +22,10 @@ var App = React.createClass({
     if (document.body.classList.contains('sidebar-collapse')) {
       Cookies.set('sidebar-collapse', false);
       document.body.classList.remove('sidebar-collapse');
+      document.body.classList.remove('sidebar-open');
     } else {
       document.body.classList.add('sidebar-collapse');
+      document.body.classList.add('sidebar-open');
       Cookies.set('sidebar-collapse', true);
     }
   },

@@ -1,3 +1,5 @@
+'use strict';
+
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -20,10 +22,12 @@ var API = {
       });
   },
 
-  get(url) {
+  doAjax(url, method, data) {
     return new Promise((resolve, reject) => {
       axios({
         url: HOST + url,
+        method: method,
+        data: data,
         headers: {'Authentication-Token': Cookies.get('token')}
       }).then((res) => {
         resolve(res.data);
@@ -32,6 +36,8 @@ var API = {
           this.refreshToken().then(() => {
             axios({
               url: HOST + url,
+              method: method,
+              data: data,
               headers: {'Authentication-Token': Cookies.get('token')}
             }).then((res) => {
               resolve(res.data);
@@ -48,36 +54,20 @@ var API = {
     });
   },
 
+  get(url) {
+    return this.doAjax(url, 'get');
+  },
+
+  delete(url) {
+    return this.doAjax(url, 'delete');
+  },
+
   post(url, data) {
-    return new Promise((resolve, reject) => {
-      axios({
-        url: HOST + url,
-        method: 'post',
-        data: data,
-        headers: {'Authentication-Token': Cookies.get('token')}
-      }).then((res) => {
-        resolve(res.data);
-      }).catch((response) => {
-        if (response.status == 401) {
-          this.refreshToken().then(() => {
-            axios({
-              url: HOST + url,
-              method: 'post',
-              data: data,
-              headers: {'Authentication-Token': Cookies.get('token')}
-            }).then((res) => {
-              resolve(res.data);
-            }).catch((resp) => {
-              reject(Error(resp.message));
-            });
-          }).catch((resp) => {
-            reject(Error(resp.message));
-          });
-        } else {
-          reject(Error(response.message));
-        }
-      });
-    });
+    return this.doAjax(url, 'post', data);
+  },
+
+  put(url, data) {
+    return this.doAjax(url, 'put', data);
   }
 };
 

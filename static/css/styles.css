@@ -1,41 +1,54 @@
-html {
-  position: relative;
-  min-height: 100%;
-}
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
+  line-height: 2.428571;
 }
 
-
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
-
-body > .container {
-  padding: 60px 15px 0;
-}
-.container .text-muted {
-  margin: 20px 0;
+.main-header .logo {
+  height: 63px;
+  line-height: 63px;
 }
 
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
+.main-sidebar, .left-side {
+  padding-top: 63px;
 }
 
-code {
-  font-size: 80%;
+.navbar-nav>li>a {
+  line-height: inherit;
 }
 
-.buttons-block .btn {
-  margin: 10px;
+@media (max-width: 991px) {
+  .navbar-custom-menu .navbar-nav>li>a {
+    line-height: inherit;
+  }
+}
+
+@media (max-width: 767px) {
+  .small-box h3 {
+    /*font-size: inherit;*/
+  }
+}
+
+.table>thead>tr>th,
+.table>tbody>tr>th,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
+  line-height: 2.428571;
+}
+
+.small-box {
+  line-height: 1.428571;
+}
+
+.mailbox-controls {
+    padding: 10px;
+}
+
+.box-header>.box-tools {
+    top: 11px;
+}
+
+.content-header>.breadcrumb {
+    font-size: 14px;
+    top: 7px;
 }

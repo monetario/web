@@ -38,7 +38,6 @@ var Store = Reflux.createStore({
   onLoad() {
     var curDate = new Date();
     API.get(`/API/v1/balance/${curDate.getFullYear()}/${curDate.getMonth() + 1}/`).then((data) => {
-      console.log('!!!!!!!', data);
       this.balance = data;
       this.trigger({balance: this.balance});
     });

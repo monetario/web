@@ -12,7 +12,7 @@ var config = {
     index: path.resolve(__dirname, 'js/index.js'),
     vendors: [
       'react', 'react-dom', 'reflux', 'react-router', 'async', 'axios', 'lodash', 'moment',
-      'js-cookie', 'history', 'classnames'
+      'js-cookie', 'history', 'classnames', 'react-select', 'react-datetime', 'formsy-react'
     ]
   },
   output: {

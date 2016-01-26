@@ -42,7 +42,6 @@ var Store = Reflux.createStore({
 
   _loadUrl(url) {
     API.get(url).then((data) => {
-      console.log('!!!!!!!', data);
       this.records = data.objects;
       this.meta = data.meta;
       this.trigger({records: this.records, meta: this.meta});

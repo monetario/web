@@ -2,18 +2,50 @@
 'use strict';
 
 import React from 'react';
-import {Router, Route, Link} from 'react-router'
+import {Router, Route, Link, History} from 'react-router'
 import Reflux from 'reflux';
 import classNames from 'classnames';
+import Moment from 'moment';
 
 import Store from './store';
 import Actions from './actions';
 
+
+var Record = React.createClass({
+  mixins: [History],
+
+  handleRecordClick(e) {
+    e.preventDefault();
+
+    this.history.pushState(null, `/p/record/${this.props.record.id}/`, {});
+  },
+
+  render() {
+    let record = this.props.record;
+
+    return (
+      <tr onClick={this.handleRecordClick}>
+        <td>{record.category.name}</td>
+        <td className="mailbox-star">
+          {record.amount} {record.currency.name}
+        </td>
+        <td className="mailbox-name">{record.account.name}</td>
+        <td className="mailbox-attachment">{record.payment_method.title}</td>
+        <td className="mailbox-date">{Moment(record.date).format('MMMM D YYYY, h:mm a')}</td>
+      </tr>
+    );
+  }
+});
+
+
 var Records = React.createClass({
+  mixins: [History],
+
   handleNextPage(e) {
     e.preventDefault();
 
     if (this.props.meta.next_url) {
+      //this.history.pushState(null, `/p/records/`, {page: 2});
       Actions.loadUrl(this.props.meta.next_url);
     }
   },
@@ -22,6 +54,7 @@ var Records = React.createClass({
     e.preventDefault();
 
     if (this.props.meta.prev_url) {
+      //this.history.pushState(null, `/p/records/`, {page: 2});
       Actions.loadUrl(this.props.meta.prev_url);
     }
   },
@@ -45,11 +78,11 @@ var Records = React.createClass({
 
   render() {
     let nextPageClassName = classNames({
-      'btn btn-default btn-sm btn-flat': true,
+      'btn btn-default btn-flat': true,
       'disabled': this.props.meta.next_url === null
     });
     let prevPageClassName = classNames({
-      'btn btn-default btn-sm btn-flat': true,
+      'btn btn-default btn-flat': true,
       'disabled': this.props.meta.prev_url === null
     });
 
@@ -62,7 +95,7 @@ var Records = React.createClass({
               <div className="box-tools">
                 <div className="input-group" style={{width: "75px"}}>
                   <div className="input-group-btn">
-                    <Link to="/p/dashboard" className="btn btn-sm btn-default btn-flat">
+                    <Link to="/p/record/" className="btn btn-success btn-flat">
                       <i className="fa fa-plus"></i> New Record
                     </Link>
                   </div>
@@ -74,7 +107,9 @@ var Records = React.createClass({
 
                 <div className="btn-group">
                   <button type="button" className="btn btn-default btn-flat">Action</button>
-                  <button type="button" className="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown">
+                  <button type="button"
+                          className="btn btn-default btn-flat dropdown-toggle"
+                          data-toggle="dropdown">
                     <span className="caret"></span>
                     <span className="sr-only">Toggle Dropdown</span>
                   </button>
@@ -112,17 +147,7 @@ var Records = React.createClass({
                   </thead>
                   <tbody>
                     {this.props.records.map((record) => {
-                      return (
-                        <tr key={`record_${record.id}`}>
-                          <td>{record.category.name}</td>
-                          <td className="mailbox-star">
-                            {record.currency.name} {record.amount}
-                          </td>
-                          <td className="mailbox-name">{record.account.name}</td>
-                          <td className="mailbox-attachment">{record.payment_method.title}</td>
-                          <td className="mailbox-date">{record.date}</td>
-                        </tr>
-                      );
+                      return <Record key={`record_${record.id}`} record={record}/>;
                     })}
                   </tbody>
                 </table>
@@ -133,7 +158,9 @@ var Records = React.createClass({
 
                 <div className="btn-group">
                   <button type="button" className="btn btn-default btn-flat">Action</button>
-                  <button type="button" className="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown">
+                  <button type="button"
+                          className="btn btn-default btn-flat dropdown-toggle"
+                          data-toggle="dropdown">
                     <span className="caret"></span>
                     <span className="sr-only">Toggle Dropdown</span>
                   </button>
@@ -166,53 +193,4 @@ var Records = React.createClass({
   }
 });
 
-
-var RecordsMain = React.createClass({
-  mixins: [
-    Reflux.listenTo(Store, 'onStoreUpdate')
-  ],
-
-  componentDidMount() {
-    Actions.load();
-  },
-
-  getInitialState() {
-    var storeData = Store.getDefaultData();
-    return {
-      meta: storeData.meta,
-      records: storeData.records
-    };
-  },
-
-  onStoreUpdate(storeData) {
-    if (storeData.records !== undefined) {
-      this.setState({records: storeData.records});
-    }
-    if (storeData.meta !== undefined) {
-      this.setState({meta: storeData.meta});
-    }
-  },
-
-  render() {
-    return (
-      <div id="content" className="content">
-        <section className="content-header">
-          <h1>
-            Records COMPONENT
-          </h1>
-          <ol className="breadcrumb">
-            <li>
-              <Link to="/p/dashboard"><i className="fa fa-dashboard"></i> Home</Link>
-            </li>
-            <li className="active">Records COMPONENT</li>
-          </ol>
-        </section>
-        <section className="content">
-          <Records meta={this.state.meta} records={this.state.records} />
-        </section>
-      </div>
-    );
-  }
-});
-
-export default RecordsMain;
+export default Records;
