@@ -13,6 +13,8 @@ import AccountsHandler from './app/accounts/handler';
 import AccountHandler from './app/account/handler';
 import CurrenciesHandler from './app/currencies/handler';
 import CurrencyHandler from './app/currency/handler';
+import CategoriesHandler from './app/categories/handler';
+import CategoryHandler from './app/category/handler';
 import TestMain from './app/test/components';
 
 
@@ -33,6 +35,8 @@ if (typeof window !== "undefined") {
             <Route path="/p/account/(:id/)" component={AccountHandler} />
             <Route path="/p/currencies" component={CurrenciesHandler} />
             <Route path="/p/currency/(:id/)" component={CurrencyHandler} />
+            <Route path="/p/categories" component={CategoriesHandler} />
+            <Route path="/p/category/(:id/)" component={CategoryHandler} />
             <Route path="/p/test" component={TestMain}>
             </Route>
           </Route>

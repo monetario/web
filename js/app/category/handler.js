@@ -8,11 +8,11 @@ import classNames from 'classnames';
 
 import Store from './store';
 import Actions from './actions';
-import AccountForm from './components';
+import CategoriesForm from './components';
 
 
 
-var AccountHandler = React.createClass({
+var CategoriesHandler = React.createClass({
   mixins: [
     Reflux.listenTo(Store, 'onStoreUpdate')
   ],
@@ -24,8 +24,8 @@ var AccountHandler = React.createClass({
   getInitialState() {
     var storeData = Store.getDefaultData();
     return {
-      account: storeData.account,
-      currencies: storeData.currencies,
+      category: storeData.category,
+      categories: storeData.categories,
     };
   },
 
@@ -34,17 +34,17 @@ var AccountHandler = React.createClass({
       this.setState({loaded: storeData.loaded});
     }
 
-    if (storeData.account !== undefined) {
-      this.setState({account: storeData.account});
+    if (storeData.category !== undefined) {
+      this.setState({category: storeData.category});
     }
 
-    if (storeData.currencies !== undefined) {
-      this.setState({currencies: storeData.currencies});
+    if (storeData.categories !== undefined) {
+      this.setState({categories: storeData.categories});
     }
   },
 
   renderForm() {
-    if (this.props.params.id && !this.state.account.id) {
+    if (this.props.params.id && !this.state.category.id) {
       return <div></div>;
     }
 
@@ -52,8 +52,8 @@ var AccountHandler = React.createClass({
       return <div></div>;
     }
 
-    return <AccountForm account={this.state.account}
-                        currencies={this.state.currencies} />
+    return <CategoriesForm category={this.state.category}
+                           categories={this.state.categories} />
   },
 
   render() {
@@ -61,16 +61,16 @@ var AccountHandler = React.createClass({
       <div id="content" className="content">
         <section className="content-header">
           <h1>
-            Account
+            Categories
           </h1>
           <ol className="breadcrumb">
             <li>
               <Link to="/p/dashboard"><i className="fa fa-dashboard"></i> Home</Link>
             </li>
             <li>
-              <Link to="/p/accounts"><i className="fa fa-briefcase"></i> Accounts</Link>
+              <Link to="/p/categories"><i className="fa fa-tags"></i> Categories</Link>
             </li>
-            <li className="active">Account</li>
+            <li className="active">Category</li>
           </ol>
         </section>
         <section className="content">
@@ -81,4 +81,4 @@ var AccountHandler = React.createClass({
   }
 });
 
-export default AccountHandler;
+export default CategoriesHandler;

@@ -4,6 +4,7 @@
 import React from 'react';
 import {Router, Route, Link} from 'react-router'
 import Reflux from 'reflux';
+import classNames from 'classnames';
 import Cookies from 'js-cookie';
 
 
@@ -31,6 +32,26 @@ var App = React.createClass({
   },
 
   render: function() {
+    let pathname = this.props.location.pathname;
+    let dashboardMenuClassName = classNames({
+      'active': pathname === '/p/dashboard'
+    });
+    let recordsMenuClassName = classNames({
+      'active': pathname === '/p/records' || pathname.startsWith('/p/record/')
+    });
+    let accountsdMenuClassName = classNames({
+      'active': pathname === '/p/accounts' || pathname.startsWith('/p/account/')
+    });
+    let currenciesMenuClassName = classNames({
+      'active': pathname === '/p/currencies' || pathname.startsWith('/p/currency/')
+    });
+    let categoriesMenuClassName = classNames({
+      'active': pathname === '/p/categories' || pathname.startsWith('/p/category/')
+    });
+    let testMenuClassName = classNames({
+      'active': pathname === '/p/test'
+    });
+
     return (
       <div>
         <header className="main-header">
@@ -121,11 +142,24 @@ var App = React.createClass({
 
             <ul className="sidebar-menu">
               <li className="header">MAIN NAVIGATION</li>
-              <li><Link to="/p/dashboard"><i className="fa fa-dashboard"></i> Dashboard</Link></li>
-              <li><Link to="/p/records"><i className="fa fa-table"></i> Records</Link></li>
-              <li><Link to="/p/accounts"><i className="fa fa-briefcase"></i> Accounts</Link></li>
-              <li><Link to="/p/currencies"><i className="fa fa-money"></i> Currencies</Link></li>
-              <li><Link to="/p/test"><i className="fa fa-circle-o"></i> Test</Link></li>
+              <li className={dashboardMenuClassName}>
+                <Link to="/p/dashboard"><i className="fa fa-dashboard"></i> Dashboard</Link>
+              </li>
+              <li className={recordsMenuClassName}>
+                <Link to="/p/records"><i className="fa fa-table"></i> Records</Link>
+              </li>
+              <li className={accountsdMenuClassName}>
+                <Link to="/p/accounts"><i className="fa fa-briefcase"></i> Accounts</Link>
+              </li>
+              <li className={currenciesMenuClassName}>
+                <Link to="/p/currencies"><i className="fa fa-money"></i> Currencies</Link>
+              </li>
+              <li className={categoriesMenuClassName}>
+                <Link to="/p/categories"><i className="fa fa-tags"></i> Categories</Link>
+              </li>
+              <li className={testMenuClassName}>
+                <Link to="/p/test"><i className="fa fa-circle-o"></i> Test</Link>
+              </li>
             </ul>
           </section>
 

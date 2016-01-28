@@ -83,10 +83,10 @@ var RecordHandler = React.createClass({
           </h1>
           <ol className="breadcrumb">
             <li>
-              <Link to="/p/dashboard/"><i className="fa fa-dashboard"></i> Home</Link>
+              <Link to="/p/dashboard"><i className="fa fa-dashboard"></i> Home</Link>
             </li>
             <li>
-              <Link to="/p/records/"><i className="fa fa-table"></i> Records</Link>
+              <Link to="/p/records"><i className="fa fa-table"></i> Records</Link>
             </li>
             <li className="active">Record</li>
           </ol>

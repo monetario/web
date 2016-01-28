@@ -48,7 +48,7 @@ var AccountsHandler = React.createClass({
             <li>
               <Link to="/p/dashboard"><i className="fa fa-dashboard"></i> Home</Link>
             </li>
-            <li className="active">Accounts</li>
+            <li className="active"><i className="fa fa-briefcase"></i> Accounts</li>
           </ol>
         </section>
         <section className="content">

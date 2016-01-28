@@ -8,10 +8,10 @@ import classNames from 'classnames';
 
 import Store from './store';
 import Actions from './actions';
-import Records from './components';
+import Categories from './components';
 
 
-var RecordsHandler = React.createClass({
+var CategoriesHandler = React.createClass({
   mixins: [
     Reflux.listenTo(Store, 'onStoreUpdate')
   ],
@@ -24,13 +24,13 @@ var RecordsHandler = React.createClass({
     var storeData = Store.getDefaultData();
     return {
       meta: storeData.meta,
-      records: storeData.records
+      categories: storeData.categories
     };
   },
 
   onStoreUpdate(storeData) {
-    if (storeData.records !== undefined) {
-      this.setState({records: storeData.records});
+    if (storeData.categories !== undefined) {
+      this.setState({categories: storeData.categories});
     }
     if (storeData.meta !== undefined) {
       this.setState({meta: storeData.meta});
@@ -42,21 +42,21 @@ var RecordsHandler = React.createClass({
       <div id="content" className="content">
         <section className="content-header">
           <h1>
-            Records
+            Categories
           </h1>
           <ol className="breadcrumb">
             <li>
               <Link to="/p/dashboard"><i className="fa fa-dashboard"></i> Home</Link>
             </li>
-            <li className="active"><i className="fa fa-table"></i> Records</li>
+            <li className="active"><i className="fa fa-tags"></i> Categories</li>
           </ol>
         </section>
         <section className="content">
-          <Records meta={this.state.meta} records={this.state.records} />
+          <Categories meta={this.state.meta} categories={this.state.categories} />
         </section>
       </div>
     );
   }
 });
 
-export default RecordsHandler;
+export default CategoriesHandler;

@@ -48,7 +48,7 @@ var CurrenciesHandler = React.createClass({
             <li>
               <Link to="/p/dashboard"><i className="fa fa-dashboard"></i> Home</Link>
             </li>
-            <li className="active">Currencies</li>
+            <li className="active"><i className="fa fa-money"></i> Currencies</li>
           </ol>
         </section>
         <section className="content">

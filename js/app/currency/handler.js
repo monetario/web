@@ -65,10 +65,10 @@ var CurrencyHandler = React.createClass({
           </h1>
           <ol className="breadcrumb">
             <li>
-              <Link to="/p/dashboard/"><i className="fa fa-dashboard"></i> Home</Link>
+              <Link to="/p/dashboard"><i className="fa fa-dashboard"></i> Home</Link>
             </li>
             <li>
-              <Link to="/p/currencies/"><i className="fa fa-table"></i> Currencys</Link>
+              <Link to="/p/currencies"><i className="fa fa-money"></i> Currencies</Link>
             </li>
             <li className="active">Currency</li>
           </ol>
