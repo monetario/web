@@ -124,6 +124,7 @@ var App = React.createClass({
               <li><Link to="/p/dashboard"><i className="fa fa-dashboard"></i> Dashboard</Link></li>
               <li><Link to="/p/records"><i className="fa fa-table"></i> Records</Link></li>
               <li><Link to="/p/accounts"><i className="fa fa-briefcase"></i> Accounts</Link></li>
+              <li><Link to="/p/currencies"><i className="fa fa-money"></i> Currencies</Link></li>
               <li><Link to="/p/test"><i className="fa fa-circle-o"></i> Test</Link></li>
             </ul>
           </section>

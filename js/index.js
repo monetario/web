@@ -11,6 +11,8 @@ import RecordsHandler from './app/records/handler';
 import RecordHandler from './app/record/handler';
 import AccountsHandler from './app/accounts/handler';
 import AccountHandler from './app/account/handler';
+import CurrenciesHandler from './app/currencies/handler';
+import CurrencyHandler from './app/currency/handler';
 import TestMain from './app/test/components';
 
 
@@ -29,6 +31,8 @@ if (typeof window !== "undefined") {
             <Route path="/p/record/(:id/)" component={RecordHandler} />
             <Route path="/p/accounts" component={AccountsHandler} />
             <Route path="/p/account/(:id/)" component={AccountHandler} />
+            <Route path="/p/currencies" component={CurrenciesHandler} />
+            <Route path="/p/currency/(:id/)" component={CurrencyHandler} />
             <Route path="/p/test" component={TestMain}>
             </Route>
           </Route>
