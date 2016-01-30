@@ -5,14 +5,22 @@ import Formsy from 'formsy-react';
 var RecordTypeSwitchField = React.createClass({
   mixins: [Formsy.Mixin],
 
-  changeValue(value) {
-    this.setValue(value);
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) {
+      this.setValue(nextProps.value);
+      let marginLeft = (nextProps.value == 'income') ? '0px' : '-50px';
+      this.setState({marginLeft: marginLeft});
+    }
   },
 
   componentDidMount() {
     let value = this.getValue();
     let marginLeft = (value == 'income') ? '0px' : '-50px';
     this.setState({marginLeft: marginLeft});
+  },
+
+  changeValue(value) {
+    this.setValue(value);
   },
 
   toggleSwitch() {

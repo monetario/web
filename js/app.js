@@ -9,12 +9,21 @@ import Cookies from 'js-cookie';
 
 
 var App = React.createClass({
+  getInitialState() {
+    return {
+      windowMinHeight: undefined
+    };
+  },
   componentDidMount() {
     if (Cookies.get('sidebar-collapse') === 'true') {
       document.body.classList.add('sidebar-collapse');
     } else {
       document.body.classList.remove('sidebar-collapse');
     }
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    this.setState({
+      windowMinHeight: `${height}px`
+    });
   },
 
   triggerSidebarCollapse(e) {
@@ -165,7 +174,7 @@ var App = React.createClass({
 
         </aside>
 
-        <div className="content-wrapper">
+        <div className="content-wrapper" style={{minHeight: this.state.windowMinHeight}}>
           {this.props.children}
         </div>
 

@@ -8,8 +8,10 @@ const SelectField = React.createClass({
   changeValue(value) {
     if (value) {
       this.setValue(value.value, value.label);
+      this.props.onChange(value.value, value.label);
     } else {
       this.setValue(undefined, undefined);
+      this.props.onChange(undefined, undefined);
     }
   },
 

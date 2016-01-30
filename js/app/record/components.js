@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import Select from 'react-select';
 import Formsy from 'formsy-react';
 import Moment from 'moment';
+import _ from 'lodash';
 
 import Store from './store';
 import Actions from './actions';
@@ -137,7 +138,17 @@ var RecordForm = React.createClass({
                       return {value: category.id, label: category.name};
                     })}
                     value={this.state.category}
-                    onChange={(val) => {this.setState({category: val});}}
+                    onChange={(val) => {
+                      if (val) {
+                        let valObj = _.find(this.props.categories, (o) => {return o.id === val});
+                        this.setState({
+                          category: val,
+                          recordType: valObj.category_type.title.toLowerCase()
+                        });
+                      } else {
+                        this.setState({category: val});
+                      }
+                    }}
                     required />
                 </div>
                 <div className="form-group col-xs-3">
