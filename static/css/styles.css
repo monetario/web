@@ -23,7 +23,7 @@ body {
 
 @media (max-width: 767px) {
   .small-box h3 {
-    /*font-size: inherit;*/
+    font-size: 22px;
   }
 }
 
@@ -51,4 +51,30 @@ body {
 .content-header>.breadcrumb {
     font-size: 14px;
     top: 7px;
+}
+
+.table>thead>tr.record>td,
+.table>tbody>tr.record>td,
+.table>tfoot>tr.record>td {
+  line-height: 1.42857143;
+}
+
+.record .record-category-name {
+  font-size: 1.2em;
+}
+
+.record .record-account-name {
+  font-size: 0.9em;
+}
+
+.record .record-currency-name {
+  font-size: 1.2em;
+  float: right;
+  clear: right;
+}
+
+.record .record-date-name {
+  font-size: 0.9em;
+  float: right;
+  clear: right;
 }

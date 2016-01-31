@@ -22,16 +22,24 @@ var Record = React.createClass({
 
   render() {
     let record = this.props.record;
+    let amountClassName = classNames({
+      'record-currency-name': true,
+      'text-red': record.record_type.value === 1,
+      'text-green': record.record_type.value === 0
+    });
 
     return (
-      <tr onClick={this.handleRecordClick}>
-        <td>{record.category.name}</td>
-        <td className="mailbox-star">
-          {record.amount} {record.currency.name}
+      <tr className="record" onClick={this.handleRecordClick}>
+        <td>
+          <div className="record-category-name">{record.category.name}</div>
+          <div className="record-account-name">{record.account.name}</div>
         </td>
-        <td className="mailbox-name">{record.account.name}</td>
-        <td className="mailbox-attachment">{record.payment_method.title}</td>
-        <td className="mailbox-date">{Moment(record.date).format('MMMM D YYYY, h:mm a')}</td>
+        <td>
+          <div className={amountClassName}>{record.amount} {record.currency.name}</div>
+          <div className="record-date-name">
+            {Moment(record.date).format('MM/DD/YYYY')}
+          </div>
+        </td>
       </tr>
     );
   }
@@ -136,15 +144,6 @@ var Records = React.createClass({
               </div>
               <div className="table-responsive mailbox-messages">
                 <table className="table table-hover table-striped">
-                  <thead>
-                    <tr>
-                      <th>Category</th>
-                      <th className="mailbox-star">Amount</th>
-                      <th className="mailbox-name">Account</th>
-                      <th className="mailbox-attachment">Payment method</th>
-                      <th className="mailbox-date">Date</th>
-                    </tr>
-                  </thead>
                   <tbody>
                     {this.props.records.map((record) => {
                       return <Record key={`record_${record.id}`} record={record}/>;
