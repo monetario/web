@@ -23,24 +23,64 @@ var Store = Reflux.createStore({
       outcome: 0,
       start_balance: 0
     };
+    this.categories = {};
+    this.loaded = false;
   },
 
   getDefaultData() {
     return {
+      loaded: this.loaded,
       balance: this.balance,
+      categories: this.categories
     };
   },
 
-  getAll() {
-    return this.balance;
+  callFunc(func, callback) {
+    func(callback);
+  },
+
+  loadCategories(callback) {
+    API.get('/API/v1/group_categories/?expand=1').then((data) => {
+      let categories = _.zipObject(data.objects.map((x) => {return x.id}), data.objects);
+      callback(null, {categories: categories});
+    });
+  },
+
+  loadBalance(callback) {
+    var curDate = new Date();
+    API.get(`/API/v1/balance/${curDate.getFullYear()}/${curDate.getMonth() + 1}/`).then((data) => {
+      callback(null, {balance: data});
+    });
   },
 
   onLoad() {
-    var curDate = new Date();
-    API.get(`/API/v1/balance/${curDate.getFullYear()}/${curDate.getMonth() + 1}/`).then((data) => {
-      this.balance = data;
-      this.trigger({balance: this.balance});
-    });
+    let loadFuncs = [
+      this.loadCategories,
+      this.loadBalance
+    ];
+
+    async.mapSeries(
+      loadFuncs,
+      this.callFunc,
+      (err, results) => {
+        if (err) {
+          err.map((error) => {
+            Error(error);
+          });
+          return;
+        }
+
+        let mergedResults = {};
+        results.map((result) => {
+          _.merge(mergedResults, result);
+        });
+
+        this.trigger(mergedResults);
+        this.loaded = true;
+        this.trigger({loaded: this.loaded});
+
+      }
+    );
   },
 
 });

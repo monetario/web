@@ -25,7 +25,12 @@ body {
   .small-box h3 {
     font-size: 22px;
   }
+  .content-wrapper {
+    margin-top: 20px;
+  }
 }
+
+
 
 .table>thead>tr>th,
 .table>tbody>tr>th,
@@ -77,4 +82,8 @@ body {
   font-size: 0.9em;
   float: right;
   clear: right;
+}
+
+.tooltip {
+  opacity: inherit;
 }

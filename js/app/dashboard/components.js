@@ -6,15 +6,66 @@ import {Router, Route, Link} from 'react-router'
 import Reflux from 'reflux';
 import classNames from 'classnames';
 import _ from 'lodash';
+import Datetime from 'react-datetime';
+import Moment from 'moment';
+
+import MonthChoise from '../../components/month_choise';
+import ExpenseDonutWidget from '../../widgets/expense_donut/components';
+import BarChartWidget from '../../widgets/bar_chart/components';
+import {PieChart} from 'react-d3-components';
+
 
 import Store from './store';
 import Actions from './actions';
 
 
 var Dashboard = React.createClass({
+  componentDidMount() {
+
+  },
+
+  componentWillReceiveProps(nextProps) {
+  },
+
+  renderExpensesDonutWidget() {
+    if (Object.keys(this.props.categories).length === 0) {
+      return '';
+    }
+
+    return <ExpenseDonutWidget name="expenses-donut-chart"
+                               title="Expenses"
+                               categories={this.props.categories}
+                               url="/API/v1/expenses/" />
+  },
+
+  renderIncomesDonutWidget() {
+    if (Object.keys(this.props.categories).length === 0) {
+      return '';
+    }
+
+    return <ExpenseDonutWidget name="incomes-donut-chart"
+                               title="Incomes"
+                               categories={this.props.categories}
+                               url="/API/v1/incomes/" />
+  },
+
+  renderCashFlowWidget() {
+    return <BarChartWidget name="cash-flows-chart"
+                           title="Cash flows"
+                           categories={this.props.categories}
+                           url="/API/v1/cash_flows/" />
+  },
+
+  renderExpensesChart() {
+    if (this.props.expenses.length === 0) {
+      return '';
+    }
+  },
+
   render() {
     return (
-      <div className="content">
+
+      <div>
         <section className="content-header">
           <h1>
             Dashboard
@@ -56,8 +107,8 @@ var Dashboard = React.createClass({
             <div className="col-lg-3 col-xs-6">
               <div className="small-box bg-red">
                 <div className="inner">
-                  <h3>{this.props.balance.outcome}</h3>
-                  <p>Outcome</p>
+                  <h3>{this.props.balance.expense}</h3>
+                  <p>Expense</p>
                 </div>
                 <div className="icon">
                   <i className="fa fa-arrow-circle-down"></i>
@@ -77,6 +128,13 @@ var Dashboard = React.createClass({
                 <span className="small-box-footer">SEK</span>
               </div>
             </div>
+          </div>
+          <div className="row">
+            {this.renderCashFlowWidget()}
+          </div>
+          <div className="row">
+            {this.renderExpensesDonutWidget()}
+            {this.renderIncomesDonutWidget()}
           </div>
         </section>
       </div>

@@ -2,13 +2,17 @@
 
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import locks from 'locks';
 
 
 const HOST = '';
-//Cookies.set('token', 'eyJpYXQiOjE0NTM0ODU3ODUsImFsZyI6IkhTMjU2IiwiZXhwIjoxNDUzNDg1ODQ1fQ.eyJpZCI6MTJ9._0prmNn9cUagjLfPMWyNL2wKpiEe0iTPraaQ24zaPnU');
+//Cookies.set('token', 'eyJpYXQiOjE0NTQ0MzIyNjksImFsZyI6IkhTMjU2IiwiZXhwIjoxNDU0NDMzMTY5fQ.eyJpZCI6MTJ9.c38qscdDr32faMolHO4k9ptJ9ovwmBc8yu6CoS53jAQ');
+
 
 
 var API = {
+  mutex: locks.createMutex(),
+
   refreshToken() {
     return axios({
         url: HOST + '/API/v1/token/',
@@ -22,6 +26,39 @@ var API = {
       });
   },
 
+  lock() {
+    return new Promise((resolve, reject) => {
+      this.mutex.timedLock(5000, function (error) {
+        if (error) {
+          reject(Error('Could not get the lock within 5 seconds, so gave up'));
+        } else {
+          console.log('We got the lock!');
+
+          resolve();
+        }
+      });
+    });
+  },
+
+  refreshTokenAndRetry(url, method, data) {
+    return new Promise((resolve, reject) => {
+      this.refreshToken().then(() => {
+        axios({
+          url: HOST + url,
+          method: method,
+          data: data,
+          headers: {'Authentication-Token': Cookies.get('token')}
+        }).then((res) => {
+          resolve(res.data);
+        }).catch((resp) => {
+          reject(Error(resp.message));
+        });
+      }).catch((resp) => {
+        reject(Error(resp.message));
+      });
+    });
+  },
+
   doAjax(url, method, data) {
     return new Promise((resolve, reject) => {
       axios({
@@ -33,19 +70,15 @@ var API = {
         resolve(res.data);
       }).catch((response) => {
         if (response.status == 401) {
-          this.refreshToken().then(() => {
-            axios({
-              url: HOST + url,
-              method: method,
-              data: data,
-              headers: {'Authentication-Token': Cookies.get('token')}
-            }).then((res) => {
-              resolve(res.data);
-            }).catch((resp) => {
-              reject(Error(resp.message));
+          this.lock().then(() => {
+            this.refreshTokenAndRetry(url, method, data).then((resp) => {
+              resolve(resp);
+              this.mutex.unlock();
+            }).catch((error) => {
+              reject(Error(error));
             });
-          }).catch((resp) => {
-            reject(Error(resp.message));
+          }).catch((error) => {
+            reject(Error(error));
           });
         } else {
           reject(Error(response.message));

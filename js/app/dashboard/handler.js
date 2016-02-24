@@ -24,7 +24,8 @@ var DashboardHandler = React.createClass({
   getInitialState() {
     var storeData = Store.getDefaultData();
     return {
-      balance: storeData.balance
+      balance: storeData.balance,
+      categories: storeData.categories
     };
   },
 
@@ -32,10 +33,14 @@ var DashboardHandler = React.createClass({
     if (storeData.balance !== undefined) {
       this.setState({balance: storeData.balance});
     }
+    if (storeData.categories !== undefined) {
+      this.setState({categories: storeData.categories});
+    }
   },
 
   render() {
-    return <Dashboard balance={this.state.balance}/>;
+    return <Dashboard balance={this.state.balance}
+                      categories={this.state.categories} />;
   }
 });
 
