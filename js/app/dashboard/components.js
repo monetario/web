@@ -3,20 +3,13 @@
 
 import React from 'react';
 import {Router, Route, Link} from 'react-router'
-import Reflux from 'reflux';
-import classNames from 'classnames';
-import _ from 'lodash';
-import Datetime from 'react-datetime';
-import Moment from 'moment';
+import numeral from 'numeral';
 
-import MonthChoise from '../../components/month_choise';
 import ExpenseDonutWidget from '../../widgets/expense_donut/components';
 import BarChartWidget from '../../widgets/bar_chart/components';
+
+import {NUMBER_FORMAT} from '../../constants';
 import {PieChart} from 'react-d3-components';
-
-
-import Store from './store';
-import Actions from './actions';
 
 
 var Dashboard = React.createClass({
@@ -83,7 +76,7 @@ var Dashboard = React.createClass({
             <div className="col-lg-3 col-xs-6">
               <div className="small-box bg-aqua">
                 <div className="inner">
-                  <h3>{this.props.balance.end_balance}</h3>
+                  <h3>{numeral(this.props.balance.end_balance).format(NUMBER_FORMAT)}</h3>
                   <p>TOTAL BALANCE</p>
                 </div>
                 <div className="icon">
@@ -95,7 +88,7 @@ var Dashboard = React.createClass({
             <div className="col-lg-3 col-xs-6">
               <div className="small-box bg-green">
                 <div className="inner">
-                  <h3>{this.props.balance.income}</h3>
+                  <h3>{numeral(this.props.balance.income).format(NUMBER_FORMAT)}</h3>
                   <p>Income</p>
                 </div>
                 <div className="icon">
@@ -107,7 +100,7 @@ var Dashboard = React.createClass({
             <div className="col-lg-3 col-xs-6">
               <div className="small-box bg-red">
                 <div className="inner">
-                  <h3>{this.props.balance.expense}</h3>
+                  <h3>{numeral(this.props.balance.expense).format(NUMBER_FORMAT)}</h3>
                   <p>Expense</p>
                 </div>
                 <div className="icon">
@@ -119,7 +112,7 @@ var Dashboard = React.createClass({
             <div className="col-lg-3 col-xs-6">
               <div className="small-box bg-yellow">
                 <div className="inner">
-                  <h3>{this.props.balance.cash_flow}</h3>
+                  <h3>{numeral(this.props.balance.cash_flow).format(NUMBER_FORMAT)}</h3>
                   <p>Cashflow</p>
                 </div>
                 <div className="icon">

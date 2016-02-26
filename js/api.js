@@ -51,7 +51,11 @@ var API = {
         }).then((res) => {
           resolve(res.data);
         }).catch((resp) => {
-          reject(Error(resp.message));
+          if (response.status == 401) {
+            window.location = '/login';
+          } else {
+            reject(Error(resp.message));
+          }
         });
       }).catch((resp) => {
         reject(Error(resp.message));

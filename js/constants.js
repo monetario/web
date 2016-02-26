@@ -1,0 +1,6 @@
+
+const DATE_FORMAT = 'MM/DD/YYYY';
+const NUMBER_FORMAT = '0,0.00';
+
+exports.DATE_FORMAT = DATE_FORMAT;
+exports.NUMBER_FORMAT = NUMBER_FORMAT;

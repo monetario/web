@@ -3,11 +3,13 @@
 
 import React from 'react';
 import {Router, Route, Link, History} from 'react-router'
-import Reflux from 'reflux';
 import classNames from 'classnames';
 import Moment from 'moment';
+import numeral from 'numeral';
 
-import Store from './store';
+import {DATE_FORMAT} from '../../constants';
+import {NUMBER_FORMAT} from '../../constants';
+
 import Actions from './actions';
 
 
@@ -35,9 +37,11 @@ var Record = React.createClass({
           <div className="record-account-name">{record.account.name}</div>
         </td>
         <td>
-          <div className={amountClassName}>{record.amount} {record.currency.name}</div>
+          <div className={amountClassName}>
+            {numeral(record.amount).format(NUMBER_FORMAT)} {record.currency.name}
+          </div>
           <div className="record-date-name">
-            {Moment(record.date).format('MM/DD/YYYY')}
+            {Moment(record.date).format(DATE_FORMAT)}
           </div>
         </td>
       </tr>

@@ -30,6 +30,10 @@ body {
   }
 }
 
+.small-box h3 {
+  font-size: 25px;
+}
+
 
 
 .table>thead>tr>th,
