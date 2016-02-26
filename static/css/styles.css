@@ -35,6 +35,10 @@ body {
 }
 
 .small-box .icon {
+  font-size: 75px;
+}
+
+.small-box:hover .icon {
   font-size: 80px;
 }
 

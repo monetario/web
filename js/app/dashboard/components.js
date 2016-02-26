@@ -80,7 +80,7 @@ var Dashboard = React.createClass({
                   <p>TOTAL BALANCE</p>
                 </div>
                 <div className="icon">
-                  <i className="fa ion-stats-bars"></i>
+                  <i className="fa fa-bar-chart"></i>
                 </div>
                 <span className="small-box-footer">SEK</span>
               </div>
