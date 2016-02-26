@@ -34,6 +34,10 @@ body {
   font-size: 25px;
 }
 
+.small-box .icon {
+  font-size: 80px;
+}
+
 
 
 .table>thead>tr>th,
