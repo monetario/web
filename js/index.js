@@ -6,6 +6,7 @@ import {Router, Route, IndexRoute, Link} from 'react-router'
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import App from './app';
+import SignInHandler from './app/signin/handler';
 import DashboardHandler from './app/dashboard/handler';
 import RecordsHandler from './app/records/handler';
 import RecordHandler from './app/record/handler';
@@ -40,6 +41,8 @@ if (typeof window !== "undefined") {
             <Route path="/p/test" component={TestMain}>
             </Route>
           </Route>
+        </Route>
+        <Route path="/signin" component={SignInHandler}>
         </Route>
       </Router>
     ), appNode)

@@ -62,7 +62,7 @@ var App = React.createClass({
     });
 
     return (
-      <div>
+      <div className="wrapper">
         <header className="main-header">
           <Link to="/p/dashboard" className="logo">
             <span className="logo-mini"><b>M</b>IO</span>

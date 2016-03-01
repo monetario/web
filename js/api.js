@@ -23,6 +23,8 @@ var API = {
         if (res.data.token.length > 0) {
           Cookies.set('token', res.data.token);
         }
+      }).catch(() => {
+        window.location = '/signin';
       });
   },
 
@@ -54,11 +56,11 @@ var API = {
           if (response.status == 401) {
             window.location = '/login';
           } else {
-            reject(Error(resp.message));
+            reject(resp);
           }
         });
       }).catch((resp) => {
-        reject(Error(resp.message));
+        reject(resp);
       });
     });
   },
@@ -79,13 +81,13 @@ var API = {
               resolve(resp);
               this.mutex.unlock();
             }).catch((error) => {
-              reject(Error(error));
+              reject(error);
             });
           }).catch((error) => {
-            reject(Error(error));
+            reject(error);
           });
         } else {
-          reject(Error(response.message));
+          reject(response);
         }
       });
     });
