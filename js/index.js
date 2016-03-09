@@ -7,6 +7,7 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import App from './app';
 import SignInHandler from './app/signin/handler';
+import SignUpHandler from './app/signup/handler';
 import DashboardHandler from './app/dashboard/handler';
 import RecordsHandler from './app/records/handler';
 import RecordHandler from './app/record/handler';
@@ -38,12 +39,11 @@ if (typeof window !== "undefined") {
             <Route path="/p/currency/(:id/)" component={CurrencyHandler} />
             <Route path="/p/categories" component={CategoriesHandler} />
             <Route path="/p/category/(:id/)" component={CategoryHandler} />
-            <Route path="/p/test" component={TestMain}>
-            </Route>
+            <Route path="/p/test" component={TestMain} />
           </Route>
         </Route>
-        <Route path="/signin" component={SignInHandler}>
-        </Route>
+        <Route path="/signup" component={SignUpHandler} />
+        <Route path="/signin" component={SignInHandler} />
       </Router>
     ), appNode)
   };

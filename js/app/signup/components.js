@@ -10,14 +10,8 @@ import Actions from './actions';
 import InputField from '../../components/input_field';
 
 
-var SignInForm = React.createClass({
+var SignUpForm = React.createClass({
   mixins: [History],
-
-  componentWillMount() {
-  },
-
-  componentWillUnmount() {
-  },
 
   getInitialState: function () {
     return {
@@ -41,14 +35,15 @@ var SignInForm = React.createClass({
     Actions.reset();
   },
   handleSubmit: function (model) {
-    Actions.signIn(model, this.history);
+    Actions.signUp(model, this.history);
   },
   renderSubmitButton() {
     return (
-      <button type="submit"
-              className="btn btn-lg btn-primary btn-block btn-flat"
-              disabled={!this.state.canSubmit}>
-        Sign In
+      <button
+        type="submit"
+        className="btn btn-lg btn-primary btn-block btn-flat"
+        disabled={!this.state.canSubmit}>
+          Sign Up
       </button>
     )
   },
@@ -60,7 +55,7 @@ var SignInForm = React.createClass({
 
     return this.props.validationErrors.map((error, i) => {
       return (
-        <div key={`signin_error_${i}`} className="callout callout-danger">
+        <div key={`signup_error_${i}`} className="callout callout-danger">
           <p>{error}</p>
         </div>
       );
@@ -74,11 +69,24 @@ var SignInForm = React.createClass({
           <a><b>Monetar</b>Io</a>
         </div>
         <div className="login-box-body">
-          <p className="login-box-msg">Sign in to start your session</p>
+          <p className="login-box-msg">Sign up to start your session</p>
           {this.renderValidationErrors()}
           <Formsy.Form onValidSubmit={this.handleSubmit}
                          onValid={this.enableButton}
                          onInvalid={this.disableButton}>
+            <div className="form-group has-feedback">
+              <InputField name="first_name"
+                          type="text"
+                          placeholder="First name"
+                          required />
+              <span className="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div className="form-group has-feedback">
+              <InputField name="last_name"
+                          type="text"
+                          placeholder="Last name" />
+              <span className="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
             <div className="form-group has-feedback">
               <InputField name="email"
                           type="email"
@@ -104,7 +112,7 @@ var SignInForm = React.createClass({
             </div>
           </Formsy.Form>
 
-          <Link to="/signup" className="text-center">Register a new membership</Link>
+          <Link to="/signin" className="text-center">I already have a membership</Link>
 
         </div>
       </div>
@@ -112,4 +120,4 @@ var SignInForm = React.createClass({
   }
 });
 
-export default SignInForm;
+export default SignUpForm;

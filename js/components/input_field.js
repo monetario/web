@@ -16,6 +16,7 @@ const InputField = React.createClass({
           type={this.props.type || 'text'}
           step={this.props.step || undefined}
           name={this.props.name}
+          placeholder={this.props.placeholder}
           className="form-control input-lg"
           onChange={this.changeValue}
           value={this.getValue()}

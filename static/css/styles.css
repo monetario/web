@@ -42,7 +42,9 @@ body {
   font-size: 80px;
 }
 
-
+.form-control-feedback {
+  line-height: 46px;
+}
 
 .table>thead>tr>th,
 .table>tbody>tr>th,
