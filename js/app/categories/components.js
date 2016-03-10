@@ -26,9 +26,6 @@ var Category = React.createClass({
     return (
       <tr onClick={this.handleCategoryClick}>
         <td>{category.name}</td>
-        <td className="mailbox-star">
-          {(category.parent) ? category.parent.name : ''}
-        </td>
         <td>
           {category.category_type.title}
         </td>
@@ -139,7 +136,6 @@ var Categories = React.createClass({
                   <thead>
                     <tr>
                       <th className="mailbox-star">Name</th>
-                      <th className="mailbox-name">Parent</th>
                       <th className="mailbox-name">Category type</th>
                     </tr>
                   </thead>

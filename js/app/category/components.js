@@ -33,16 +33,14 @@ var CategoryForm = React.createClass({
       return {
         canSubmit: false,
         name: this.props.category.name,
-        categoryType: this.props.category.category_type.value == 0 ? 'income' : 'outcome',
-        parent: (this.props.category.parent) ? this.props.category.parent.id : undefined
+        categoryType: this.props.category.category_type.value == 0 ? 'income' : 'outcome'
       };
     }
 
     return {
       canSubmit: false,
       name: undefined,
-      categoryType: undefined,
-      parent: undefined
+      categoryType: undefined
     }
   },
 
@@ -134,17 +132,6 @@ var CategoryForm = React.createClass({
                               value={this.state.name}
                               onChange={(val) => {this.setState({name: val});}}
                               required />
-                </div>
-
-                <div className="form-group col-xs-3">
-                  <label htmlFor="category">Parent</label>
-                  <SelectField
-                    name="parent"
-                    options={this.props.categories.map((category) => {
-                      return {value: category.id, label: category.name};
-                    })}
-                    value={this.state.parent}
-                    onChange={(val) => {this.setState({category: val});}} />
                 </div>
 
                 <div className="form-group col-xs-3">
