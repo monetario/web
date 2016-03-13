@@ -16,6 +16,7 @@ import InputField from '../../components/input_field';
 import TextAreaField from '../../components/textarea';
 import DateTimeField from '../../components/date_time';
 import SelectField from '../../components/select';
+import CategorySelectField from '../../components/category_select';
 import RecordTypeSwitchField from '../../components/record_type_switch';
 
 
@@ -132,10 +133,15 @@ var RecordForm = React.createClass({
               <div className="box-body">
                 <div className="form-group col-xs-3">
                   <label htmlFor="category">Category</label>
-                  <SelectField
+                  <CategorySelectField
                     name="category"
                     options={this.props.categories.map((category) => {
-                      return {value: category.id, label: category.name};
+                      return {
+                        value: category.id,
+                        label: category.name,
+                        logo: category.logo,
+                        colour: category.colour
+                      };
                     })}
                     value={this.state.category}
                     onChange={(val) => {
