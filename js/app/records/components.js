@@ -11,6 +11,7 @@ import {DATE_FORMAT} from '../../constants';
 import {NUMBER_FORMAT} from '../../constants';
 
 import Actions from './actions';
+import CategoryIcon from '../../components/category_icon';
 
 
 var Record = React.createClass({
@@ -32,6 +33,9 @@ var Record = React.createClass({
 
     return (
       <tr className="record" onClick={this.handleRecordClick}>
+        <td style={{width: '50px'}}>
+          <CategoryIcon category={record.category} />
+        </td>
         <td>
           <div className="record-category-name">{record.category.name}</div>
           <div className="record-account-name">{record.account.name}</div>

@@ -64,6 +64,8 @@ var Store = Reflux.createStore({
   onAdd(model, history) {
     let postData = {
       name: model.name,
+      colour: model.colour,
+      logo: model.logo,
       category_type: model.categoryType === 'income' ? 0 : 1
     };
 
@@ -75,6 +77,8 @@ var Store = Reflux.createStore({
   onSave(model, history) {
     let postData = {
       name: model.name,
+      colour: model.colour,
+      logo: model.logo,
       category_type: model.categoryType === 'income' ? 0 : 1
     };
     API.put(`/API/v1/group_categories/${this.category.id}/`, postData).then((data) => {

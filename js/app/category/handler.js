@@ -10,6 +10,9 @@ import Store from './store';
 import Actions from './actions';
 import CategoriesForm from './components';
 
+import {COLOURS} from '../../constants';
+import {LOGOS} from '../../constants';
+
 
 
 var CategoriesHandler = React.createClass({
@@ -53,7 +56,9 @@ var CategoriesHandler = React.createClass({
     }
 
     return <CategoriesForm category={this.state.category}
-                           categories={this.state.categories} />
+                           categories={this.state.categories}
+                           colours={COLOURS}
+                           logos={LOGOS} />
   },
 
   render() {

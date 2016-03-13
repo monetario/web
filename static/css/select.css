@@ -335,3 +335,32 @@
     -webkit-transform: rotate(1turn);
   }
 }
+
+.Select-value .color-option {
+
+}
+
+.Select-value .color-option .color-box {
+  width: 45px;
+  height: 30px;
+  display: inline-block;
+  position: absolute;
+  top: 8px;
+}
+
+.Select-value .color-option .color-label {
+  margin-left: 50px;
+}
+
+.Select-option .color-option {
+
+}
+
+.Select-option .color-option .color-box {
+  width: 45px;
+  height: 25px;
+  display: inline-block;
+}
+
+.Select-option .color-option .color-label {
+}

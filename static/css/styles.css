@@ -78,6 +78,10 @@ body {
   line-height: 1.42857143;
 }
 
+.record .record-category-icon {
+  font-size: 1.2em;
+}
+
 .record .record-category-name {
   font-size: 1.2em;
 }
@@ -100,4 +104,14 @@ body {
 
 .tooltip {
   opacity: inherit;
+}
+
+.category-icon {
+  margin-right: 5px;
+  line-height: 34px;
+}
+
+.category-icon i {
+  color: white;
+  font-size: larger;
 }

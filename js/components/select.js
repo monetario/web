@@ -15,6 +15,44 @@ const SelectField = React.createClass({
     }
   },
 
+  renderOption(option) {
+    if (option.colour) {
+      return (
+        <span className="color-option">
+          <span className="color-box" style={{backgroundColor: option.colour}}>
+          </span> <span className="color-label">{option.label}</span>
+        </span>
+      );
+    }
+
+    if (option.logo) {
+      return (
+        <i className={"fa fa-fw " + option.logo}></i>
+      );
+    }
+
+    return <span>{option.label}</span>;
+  },
+
+  renderValue(option) {
+    if (option.colour) {
+      return (
+        <span className="color-option">
+          <span className="color-box" style={{backgroundColor: option.colour}}>
+          </span> <span className="color-label">{option.label}</span>
+        </span>
+      );
+    }
+    
+    if (option.logo) {
+      return (
+        <i className={"fa fa-fw " + option.logo}></i>
+      );
+    }
+
+    return <span>{option.label}</span>;
+  },
+
   render() {
     const errorMessage = this.getErrorMessage();
 
@@ -26,6 +64,8 @@ const SelectField = React.createClass({
           options={this.props.options}
           style={{margin: 0, padding: 0}}
           onChange={this.changeValue}
+          optionRenderer={this.renderOption}
+          valueRenderer={this.renderValue}
           value={this.getValue()} />
         <span className='validation-error'>{errorMessage}</span>
       </div>

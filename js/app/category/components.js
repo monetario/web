@@ -32,6 +32,8 @@ var CategoryForm = React.createClass({
     if (this.props.category.id) {
       return {
         canSubmit: false,
+        colour: this.props.category.colour,
+        logo: this.props.category.logo,
         name: this.props.category.name,
         categoryType: this.props.category.category_type.value == 0 ? 'income' : 'outcome'
       };
@@ -39,6 +41,8 @@ var CategoryForm = React.createClass({
 
     return {
       canSubmit: false,
+      colour: undefined,
+      logo: undefined,
       name: undefined,
       categoryType: undefined
     }
@@ -143,6 +147,30 @@ var CategoryForm = React.createClass({
                     onChange={(val) => {
                       this.setState({categoryType: val});
                     }} />
+                </div>
+              </div>
+              <div className="box-body">
+                <div className="form-group col-xs-3">
+                  <SelectField
+                    name="colour"
+                    options={this.props.colours.map((colour) => {
+                      return {value: colour.value, label: colour.value, colour: colour.value};
+                    })}
+                    style={{margin: 0, padding: 0}}
+                    onChange={(val) => {this.setState({colour: val});}}
+                    value={this.state.colour}
+                    required />
+                </div>
+                <div className="form-group col-xs-3">
+                  <SelectField
+                    name="logo"
+                    options={this.props.logos.map((logo) => {
+                      return {value: logo.value, label: logo.value, logo: logo.value};
+                    })}
+                    style={{margin: 0, padding: 0}}
+                    onChange={(val) => {this.setState({logo: val});}}
+                    value={this.state.logo}
+                    required />
                 </div>
               </div>
 

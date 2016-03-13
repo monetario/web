@@ -14,7 +14,8 @@ const Donut = React.createClass({
   componentDidMount() {
     Morris.Donut({
       element: this.props.name,
-      data: this.props.data
+      data: this.props.data,
+      colors: this.props.colors
     });
   },
 

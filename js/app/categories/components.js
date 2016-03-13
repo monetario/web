@@ -9,6 +9,8 @@ import Moment from 'moment';
 
 import Store from './store';
 import Actions from './actions';
+import CategoryIcon from '../../components/category_icon';
+
 
 
 var Category = React.createClass({
@@ -25,7 +27,7 @@ var Category = React.createClass({
 
     return (
       <tr onClick={this.handleCategoryClick}>
-        <td>{category.name}</td>
+        <td><CategoryIcon category={category} /> {category.name}</td>
         <td>
           {category.category_type.title}
         </td>
