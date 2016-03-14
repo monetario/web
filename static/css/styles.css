@@ -106,12 +106,19 @@ body {
   opacity: inherit;
 }
 
+
+.category-select .Select-value {
+  padding-left: 4px !important;
+}
+
 .category-icon {
   margin-right: 5px;
-  line-height: 34px;
+  line-height: 23px;
+  padding: 9px 6px 4px 6px;
+  margin-bottom: 4px;
 }
 
 .category-icon i {
   color: white;
-  font-size: larger;
+  font-size: large;
 }

@@ -48,7 +48,7 @@ const CategorySelectField = React.createClass({
       <div>
         <Select
           name="form-field-name"
-          className="form-control input-lg"
+          className="form-control input-lg category-select"
           options={this.props.options}
           style={{margin: 0, padding: 0}}
           onChange={this.changeValue}
