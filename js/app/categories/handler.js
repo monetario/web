@@ -39,7 +39,7 @@ var CategoriesHandler = React.createClass({
 
   render() {
     return (
-      <div id="content" className="content">
+      <div id="content">
         <section className="content-header">
           <h1>
             Categories
