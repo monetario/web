@@ -104,22 +104,7 @@ var Categories = React.createClass({
             <div className="box-body no-padding">
               <div className="mailbox-controls">
 
-                <div className="btn-group">
-                  <button type="button" className="btn btn-default btn-flat">Action</button>
-                  <button type="button"
-                          className="btn btn-default btn-flat dropdown-toggle"
-                          data-toggle="dropdown">
-                    <span className="caret"></span>
-                    <span className="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <ul className="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li className="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
+                <div className="btn-group"></div>
                 
                 <div className="pull-right">
                   {this.renderPageCounters()}
@@ -152,22 +137,7 @@ var Categories = React.createClass({
             <div className="box-footer no-padding">
               <div className="mailbox-controls">
 
-                <div className="btn-group">
-                  <button type="button" className="btn btn-default btn-flat">Action</button>
-                  <button type="button"
-                          className="btn btn-default btn-flat dropdown-toggle"
-                          data-toggle="dropdown">
-                    <span className="caret"></span>
-                    <span className="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <ul className="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li className="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
+                <div className="btn-group"></div>
 
                 <div className="pull-right">
                   {this.renderPageCounters()}
