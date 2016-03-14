@@ -240,11 +240,10 @@ var RecordForm = React.createClass({
                       }} />
                   </div>
                 </div>
-
-                <div className="box-footer">
-                  {this.renderSubmitButton()}
-                  {this.renderDeleteButton()}
-                </div>
+              </div>
+              <div className="box-footer">
+                {this.renderSubmitButton()}
+                {this.renderDeleteButton()}
               </div>
             </Formsy.Form>
           </div>
