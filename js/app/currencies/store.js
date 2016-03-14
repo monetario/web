@@ -3,11 +3,11 @@
 
 import React from 'react';
 import Reflux from 'reflux';
-import async from 'async';
-import axios from 'axios';
 
 import API from '../../api';
 import Actions from './actions';
+
+import DEFAULT_PAGE_SIZE from '../../constants';
 
 
 var Store = Reflux.createStore({
@@ -53,7 +53,9 @@ var Store = Reflux.createStore({
   },
 
   onLoad() {
-    this._loadUrl(`/API/v1/group_currencies/?expand=1&per_page=5&page=1&sort=date,desc`)
+    this._loadUrl(
+      `/API/v1/group_currencies/?expand=1&per_page=${DEFAULT_PAGE_SIZE}&page=1&sort=date,desc`
+    )
   },
 
 });

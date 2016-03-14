@@ -163,9 +163,12 @@ const LOGOS = [
   {value: 'fa-plus-square'},
 ];
 
+const DEFAULT_PAGE_SIZE = 50;
+
 
 exports.DATE_FORMAT = DATE_FORMAT;
 exports.NUMBER_FORMAT = NUMBER_FORMAT;
 exports.APP_SECRET_KEY = APP_SECRET_KEY;
 exports.COLOURS = COLOURS;
 exports.LOGOS = LOGOS;
+exports.DEFAULT_PAGE_SIZE = DEFAULT_PAGE_SIZE;
