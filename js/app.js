@@ -57,9 +57,6 @@ var App = React.createClass({
     let categoriesMenuClassName = classNames({
       'active': pathname === '/p/categories' || pathname.startsWith('/p/category/')
     });
-    let testMenuClassName = classNames({
-      'active': pathname === '/p/test'
-    });
 
     return (
       <div className="wrapper">
@@ -155,9 +152,6 @@ var App = React.createClass({
               </li>
               <li className={categoriesMenuClassName}>
                 <Link to="/p/categories"><i className="fa fa-tags"></i> Categories</Link>
-              </li>
-              <li className={testMenuClassName}>
-                <Link to="/p/test"><i className="fa fa-circle-o"></i> Test</Link>
               </li>
             </ul>
           </section>
