@@ -116,25 +116,27 @@ var CurrencyForm = React.createClass({
                          onInvalid={this.disableButton}>
 
               <div className="box-body">
-                <div className="form-group col-xs-3">
-                  <label htmlFor="name-input">Name</label>
-                  <InputField name="name"
-                              type="text"
-                              value={this.state.name}
-                              onChange={(val) => {this.setState({name: val});}}
-                              required />
-                </div>
+                <div className="row">
+                  <div className="col-lg-6">
+                    <label htmlFor="name-input">Name</label>
+                    <InputField name="name"
+                                type="text"
+                                value={this.state.name}
+                                onChange={(val) => {this.setState({name: val});}}
+                                required />
+                  </div>
 
-                <div className="form-group col-xs-3">
-                  <label htmlFor="currency">Currency</label>
-                  <SelectField
-                    name="symbol"
-                    options={this.props.currencies.map((currency) => {
-                      return {value: currency.symbol, label: currency.name};
-                    })}
-                    value={this.state.symbol}
-                    onChange={(val) => {this.setState({currency: val});}}
-                    required />
+                  <div className="col-lg-6">
+                    <label htmlFor="currency">Currency</label>
+                    <SelectField
+                      name="symbol"
+                      options={this.props.currencies.map((currency) => {
+                        return {value: currency.symbol, label: currency.name};
+                      })}
+                      value={this.state.symbol}
+                      onChange={(val) => {this.setState({currency: val});}}
+                      required />
+                  </div>
                 </div>
               </div>
 

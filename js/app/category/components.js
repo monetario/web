@@ -129,48 +129,55 @@ var CategoryForm = React.createClass({
                          onInvalid={this.disableButton}>
 
               <div className="box-body">
-                <div className="form-group col-xs-3">
-                  <label htmlFor="name-input">Name</label>
-                  <InputField name="name"
-                              type="text"
-                              value={this.state.name}
-                              onChange={(val) => {this.setState({name: val});}}
-                              required />
-                </div>
+                <div className="row">
+                  <div className="col-lg-6">
+                    <label htmlFor="name-input">Name</label>
+                    <InputField name="name"
+                                type="text"
+                                value={this.state.name}
+                                onChange={(val) => {this.setState({name: val});}}
+                                required />
+                  </div>
 
-                <div className="form-group col-xs-3">
-                  {this.renderCategoryTypeLabel()}
+                  <div className="col-lg-6">
+                    {this.renderCategoryTypeLabel()}
 
-                  <RecordTypeSwitchField
-                    name="categoryType"
-                    value={this.state.categoryType}
-                    onChange={(val) => {
-                      this.setState({categoryType: val});
-                    }} />
+                    <RecordTypeSwitchField
+                      name="categoryType"
+                      value={this.state.categoryType}
+                      onChange={(val) => {
+                        this.setState({categoryType: val});
+                      }} />
+                  </div>
                 </div>
               </div>
               <div className="box-body">
-                <div className="form-group col-xs-3">
-                  <SelectField
-                    name="colour"
-                    options={this.props.colours.map((colour) => {
-                      return {value: colour.value, label: colour.value, colour: colour.value};
-                    })}
-                    style={{margin: 0, padding: 0}}
-                    onChange={(val) => {this.setState({colour: val});}}
-                    value={this.state.colour}
-                    required />
-                </div>
-                <div className="form-group col-xs-3">
-                  <SelectField
-                    name="logo"
-                    options={this.props.logos.map((logo) => {
-                      return {value: logo.value, label: logo.value, logo: logo.value};
-                    })}
-                    style={{margin: 0, padding: 0}}
-                    onChange={(val) => {this.setState({logo: val});}}
-                    value={this.state.logo}
-                    required />
+                <div className="row">
+                  <div className="col-lg-6">
+                    <label htmlFor="color-input">Color</label>
+                    <SelectField
+                      name="colour"
+                      options={this.props.colours.map((colour) => {
+                        return {value: colour.value, label: colour.value, colour: colour.value};
+                      })}
+                      style={{margin: 0, padding: 0}}
+                      onChange={(val) => {this.setState({colour: val});}}
+                      value={this.state.colour}
+                      required />
+                  </div>
+
+                  <div className="col-lg-6">
+                    <label htmlFor="icon-input">Icon</label>
+                    <SelectField
+                      name="logo"
+                      options={this.props.logos.map((logo) => {
+                        return {value: logo.value, label: logo.value, logo: logo.value};
+                      })}
+                      style={{margin: 0, padding: 0}}
+                      onChange={(val) => {this.setState({logo: val});}}
+                      value={this.state.logo}
+                      required />
+                  </div>
                 </div>
               </div>
 

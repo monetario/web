@@ -131,116 +131,120 @@ var RecordForm = React.createClass({
                          onInvalid={this.disableButton}>
 
               <div className="box-body">
-                <div className="form-group col-xs-3">
-                  <label htmlFor="category">Category</label>
-                  <CategorySelectField
-                    name="category"
-                    options={this.props.categories.map((category) => {
-                      return {
-                        value: category.id,
-                        label: category.name,
-                        logo: category.logo,
-                        colour: category.colour
-                      };
-                    })}
-                    value={this.state.category}
-                    onChange={(val) => {
-                      if (val) {
-                        let valObj = _.find(this.props.categories, (o) => {return o.id === val});
-                        this.setState({
-                          category: val,
-                          recordType: valObj.category_type.title.toLowerCase()
-                        });
-                      } else {
-                        this.setState({category: val});
-                      }
-                    }}
-                    required />
-                </div>
-                <div className="form-group col-xs-3">
-                  <label htmlFor="paymentMethod">Payment Method</label>
-                  <SelectField
-                    name="paymentMethod"
-                    options={this.props.paymentMethod}
-                    value={this.state.paymentMethod}
-                    onChange={(val) => {this.setState({paymentMethod: val});}}
-                    required />
-                </div>
-                <div className="form-group col-xs-3">
-                  <label htmlFor="account">Account</label>
-                  <SelectField
-                    name="account"
-                    options={this.props.accounts.map((account) => {
-                      return {value: account.id, label: account.name};
-                    })}
-                    style={{margin: 0, padding: 0}}
-                    onChange={(val) => {this.setState({account: val});}}
-                    value={this.state.account}
-                    required />
-                </div>
-              </div>
-
-              <div className="box-body">
-                <div className="form-group col-xs-3">
-                  <label htmlFor="currency">Currency</label>
-                  <SelectField
-                    name="currency"
-                    options={this.props.currencies.map((currency) => {
-                      return {value: currency.id, label: currency.name};
-                    })}
-                    value={this.state.currency}
-                    onChange={(val) => {this.setState({currency: val});}}
-                    required />
+                <div className="row">
+                  <div className="col-lg-6">
+                    <label htmlFor="category">Category</label>
+                    <CategorySelectField
+                      name="category"
+                      options={this.props.categories.map((category) => {
+                        return {
+                          value: category.id,
+                          label: category.name,
+                          logo: category.logo,
+                          colour: category.colour
+                        };
+                      })}
+                      value={this.state.category}
+                      onChange={(val) => {
+                        if (val) {
+                          let valObj = _.find(this.props.categories, (o) => {return o.id === val});
+                          this.setState({
+                            category: val,
+                            recordType: valObj.category_type.title.toLowerCase()
+                          });
+                        } else {
+                          this.setState({category: val});
+                        }
+                      }}
+                      required />
+                  </div>
+                  <div className="col-lg-6">
+                    <label htmlFor="paymentMethod">Payment Method</label>
+                    <SelectField
+                      name="paymentMethod"
+                      options={this.props.paymentMethod}
+                      value={this.state.paymentMethod}
+                      onChange={(val) => {this.setState({paymentMethod: val});}}
+                      required />
+                  </div>
                 </div>
 
-                <div className="form-group col-xs-3">
-                  <label htmlFor="amount-input">Amount</label>
-                  <InputField name="amount"
-                              type="number"
-                              step="0.01"
-                              value={this.state.amount}
-                              onChange={(val) => {this.setState({amount: val});}}
-                              validations="isFloat"
-                              validationError="This is not a valid email"
-                              required />
-                </div>
-                <div className="form-group col-xs-3">
-                  {this.renderRecordTypeLabel()}
+                <div className="row">
+                  <div className="col-lg-6">
+                    <label htmlFor="account">Account</label>
+                    <SelectField
+                      name="account"
+                      options={this.props.accounts.map((account) => {
+                        return {value: account.id, label: account.name};
+                      })}
+                      style={{margin: 0, padding: 0}}
+                      onChange={(val) => {this.setState({account: val});}}
+                      value={this.state.account}
+                      required />
+                  </div>
 
-                  <RecordTypeSwitchField
-                    name="recordType"
-                    value={this.state.recordType}
-                    onChange={(val) => {
-                      this.setState({recordType: val});
-                    }} />
+                  <div className="col-lg-6">
+                    <label htmlFor="currency">Currency</label>
+                    <SelectField
+                      name="currency"
+                      options={this.props.currencies.map((currency) => {
+                        return {value: currency.id, label: currency.name};
+                      })}
+                      value={this.state.currency}
+                      onChange={(val) => {this.setState({currency: val});}}
+                      required />
+                  </div>
                 </div>
-              </div>
 
-              <div className="box-body">
-                <div className="form-group col-xs-3">
-                  <label htmlFor="date-time">Date and Time</label>
-                  <DateTimeField
-                    name="datetime"
-                    value={this.state.datetime}
-                    onChange={(val) => {this.setState({datetime: val});}} required />
+                <div className="row">
+                  <div className="col-lg-4">
+                    <label htmlFor="amount-input">Amount</label>
+                    <InputField name="amount"
+                                type="number"
+                                step="0.01"
+                                value={this.state.amount}
+                                onChange={(val) => {this.setState({amount: val});}}
+                                validations="isFloat"
+                                validationError="This is not a valid email"
+                                required />
+                  </div>
+
+                  <div className="col-lg-4">
+                    <label htmlFor="date-time">Date and Time</label>
+                    <DateTimeField
+                      name="datetime"
+                      value={this.state.datetime}
+                      onChange={(val) => {this.setState({datetime: val});}} required />
+                  </div>
+
+                  <div className="col-lg-4">
+                    {this.renderRecordTypeLabel()}
+
+                    <RecordTypeSwitchField
+                      name="recordType"
+                      value={this.state.recordType}
+                      onChange={(val) => {
+                        this.setState({recordType: val});
+                      }} />
+                  </div>
                 </div>
-              </div>
 
-              <div className="box-body">
-                <div className="form-group">
-                  <label>Note</label>
-                  <TextAreaField
-                    name="description"
-                    value={this.state.description}
-                    onChange={(val) => {
-                      this.setState({description: val});
-                    }} />
+                <div className="row">
+                  <div className="col-lg-12">
+                    <label>Note</label>
+                    <TextAreaField
+                      name="description"
+                      value={this.state.description}
+                      onChange={(val) => {
+                        this.setState({description: val});
+                      }} />
+                  </div>
                 </div>
-              </div>
 
-              <div className="box-footer">
-                {this.renderSubmitButton()}
-                {this.renderDeleteButton()}
+                <div className="box-footer">
+                  {this.renderSubmitButton()}
+                  {this.renderDeleteButton()}
+                </div>
               </div>
             </Formsy.Form>
           </div>
