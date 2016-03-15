@@ -1,30 +1,75 @@
 'use strict';
 
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import locks from 'locks';
-
+import {APP_SECRET_KEY} from './constants';
 
 const HOST = '';
-//Cookies.set('token', 'eyJpYXQiOjE0NTQ0MzIyNjksImFsZyI6IkhTMjU2IiwiZXhwIjoxNDU0NDMzMTY5fQ.eyJpZCI6MTJ9.c38qscdDr32faMolHO4k9ptJ9ovwmBc8yu6CoS53jAQ');
-
 
 
 var API = {
   mutex: locks.createMutex(),
 
+  login(email, password) {
+    return new Promise((resolve, reject) => {
+      if (localStorage.token) {
+        this.onChange(true);
+        resolve(true);
+        return
+      }
+
+      let postData = {
+        email: email,
+        password: password,
+        secret: APP_SECRET_KEY
+      };
+
+      this.post('/API/v1/token/', postData).then((data) => {
+        localStorage.token = data.token;
+        resolve(true);
+        this.onChange(true);
+      }).catch((response) => {
+        reject(response);
+        this.onChange(false);
+      });
+    });
+  },
+
+  getToken() {
+    return localStorage.token
+  },
+
+  setToken(token) {
+    return localStorage.token = token;
+  },
+
+  logout() {
+    return new Promise((resolve, reject) => {
+      delete localStorage.token;
+      this.onChange(false);
+      resolve(false);
+    });
+  },
+
+  loggedIn() {
+    return !!localStorage.token
+  },
+
+  onChange() {},
+
   refreshToken() {
     return axios({
         url: HOST + '/API/v1/token/',
         method: 'put',
-        headers: {'Authentication-Token': Cookies.get('token')}
+        headers: {'Authentication-Token': this.getToken()}
       }).then((res) => {
         console.log('NEW TOKEN: ', res.data.token);
         if (res.data.token.length > 0) {
-          Cookies.set('token', res.data.token);
+          this.setToken(res.data.token);
         }
       }).catch(() => {
-        window.location = '/signin';
+        delete localStorage.token;
+        this.onChange(false);
       });
   },
 
@@ -49,7 +94,7 @@ var API = {
           url: HOST + url,
           method: method,
           data: data,
-          headers: {'Authentication-Token': Cookies.get('token')}
+          headers: {'Authentication-Token': this.getToken()}
         }).then((res) => {
           resolve(res.data);
         }).catch((resp) => {
@@ -71,7 +116,7 @@ var API = {
         url: HOST + url,
         method: method,
         data: data,
-        headers: {'Authentication-Token': Cookies.get('token')}
+        headers: {'Authentication-Token': this.getToken()}
       }).then((res) => {
         resolve(res.data);
       }).catch((response) => {

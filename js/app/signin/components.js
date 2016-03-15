@@ -41,7 +41,7 @@ var SignInForm = React.createClass({
     Actions.reset();
   },
   handleSubmit: function (model) {
-    Actions.signIn(model, this.history);
+    Actions.signIn(model, this.history, this.props.location.state.nextPathname);
   },
   renderSubmitButton() {
     return (

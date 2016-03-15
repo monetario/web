@@ -2,18 +2,33 @@
 'use strict';
 
 import React from 'react';
-import {Router, Route, Link} from 'react-router'
-import Reflux from 'reflux';
+import {Router, Route, Link, History} from 'react-router'
 import classNames from 'classnames';
 import Cookies from 'js-cookie';
 
+import API from './api';
+
 
 var App = React.createClass({
+  mixins: [History],
+
   getInitialState() {
     return {
       windowMinHeight: undefined
     };
   },
+
+  updateAuth(loggedIn) {
+    if (!loggedIn) {
+      this.history.pushState(null, '/signin', {});
+    }
+  },
+
+  componentWillMount() {
+    API.onChange = this.updateAuth;
+    API.login();
+  },
+
   componentDidMount() {
     if (Cookies.get('sidebar-collapse') === 'true') {
       document.body.classList.add('sidebar-collapse');

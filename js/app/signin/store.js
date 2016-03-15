@@ -3,12 +3,9 @@
 
 import React from 'react';
 import Reflux from 'reflux';
-import Cookies from 'js-cookie';
 
 import API from '../../api';
 import Actions from './actions';
-
-import {APP_SECRET_KEY} from '../../constants';
 
 
 var Store = Reflux.createStore({
@@ -26,16 +23,9 @@ var Store = Reflux.createStore({
     };
   },
 
-  onSignIn(model, history) {
-    let postData = {
-      email: model.email,
-      password: model.password,
-      secret: APP_SECRET_KEY
-    };
-
-    API.post('/API/v1/token/', postData).then((data) => {
-      Cookies.set('token', data.token);
-      history.pushState(null, '/', {});
+  onSignIn(model, history, nextPathname) {
+    API.login(model.email, model.password).then((data) => {
+      history.pushState(null, nextPathname, {});
     }).catch((response) => {
       if (response.status === 400) {
         this.validationErrors = ['Login or password is incorrect'];

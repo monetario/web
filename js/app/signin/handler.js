@@ -30,7 +30,7 @@ var SignInHandler = React.createClass({
 
   render() {
     return (
-      <SignInForm validationErrors={this.state.validationErrors} />
+      <SignInForm validationErrors={this.state.validationErrors} location={this.props.location} />
     );
   }
 });
