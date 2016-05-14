@@ -133,6 +133,18 @@ var RecordForm = React.createClass({
               <div className="box-body">
                 <div className="row">
                   <div className="col-lg-6">
+                    <label htmlFor="account">Account</label>
+                    <SelectField
+                      name="account"
+                      options={this.props.accounts.map((account) => {
+                        return {value: account.id, label: account.name};
+                      })}
+                      style={{margin: 0, padding: 0}}
+                      onChange={(val) => {this.setState({account: val});}}
+                      value={this.state.account}
+                      required />
+                  </div>
+                  <div className="col-lg-6">
                     <label htmlFor="category">Category</label>
                     <CategorySelectField
                       name="category"
@@ -158,6 +170,9 @@ var RecordForm = React.createClass({
                       }}
                       required />
                   </div>
+                </div>
+
+                <div className="row">
                   <div className="col-lg-6">
                     <label htmlFor="paymentMethod">Payment Method</label>
                     <SelectField
@@ -165,21 +180,6 @@ var RecordForm = React.createClass({
                       options={this.props.paymentMethod}
                       value={this.state.paymentMethod}
                       onChange={(val) => {this.setState({paymentMethod: val});}}
-                      required />
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div className="col-lg-6">
-                    <label htmlFor="account">Account</label>
-                    <SelectField
-                      name="account"
-                      options={this.props.accounts.map((account) => {
-                        return {value: account.id, label: account.name};
-                      })}
-                      style={{margin: 0, padding: 0}}
-                      onChange={(val) => {this.setState({account: val});}}
-                      value={this.state.account}
                       required />
                   </div>
 

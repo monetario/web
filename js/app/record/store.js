@@ -87,10 +87,9 @@ var Store = Reflux.createStore({
   },
 
   onAdd(model, history) {
-    let amount = parseFloat(model.amount);
     let postData = {
       account: model.account,
-      amount: (model.recordType === 'outcome' && amount > 0) ? 0 - amount : amount,
+      amount: parseFloat(model.amount),
       category: model.category,
       currency: model.currency,
       date: model.datetime,
@@ -105,10 +104,9 @@ var Store = Reflux.createStore({
   },
 
   onSave(model, history) {
-    let amount = parseFloat(model.amount);
     let postData = {
       account: model.account,
-      amount: (model.recordType === 'outcome' && amount > 0) ? 0 - amount : amount,
+      amount: parseFloat(model.amount),
       category: model.category,
       currency: model.currency,
       date: model.datetime,
