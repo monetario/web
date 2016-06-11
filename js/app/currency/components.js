@@ -71,7 +71,7 @@ var CurrencyForm = React.createClass({
     if (this.state.currencyType === 'income') {
       label = 'Income';
     }
-    return <label htmlFor="income-outcome">{label}</label>;
+    return <label htmlFor="income-expense">{label}</label>;
   },
 
   renderSubmitButton() {

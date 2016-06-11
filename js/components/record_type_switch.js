@@ -26,7 +26,7 @@ var RecordTypeSwitchField = React.createClass({
   toggleSwitch() {
     let value = this.getValue();
     if (value == 'income') {
-      value = 'outcome';
+      value = 'expense';
       this.setValue(value);
       this.setState({marginLeft: '-50px'}, () => {
         this.props.onChange(value);

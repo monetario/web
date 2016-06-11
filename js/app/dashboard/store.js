@@ -20,7 +20,7 @@ var Store = Reflux.createStore({
       cash_flow: 0,
       end_balance: 0,
       income: 0,
-      outcome: 0,
+      expense: 0,
       start_balance: 0
     };
     this.categories = {};

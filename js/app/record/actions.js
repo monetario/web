@@ -9,6 +9,9 @@ let Actions = Reflux.createActions([
   "add",
   "save",
   "delete",
+  "addTransaction",
+  "saveTransaction",
+  "deleteTransaction",
   "reset",
 ]);
 

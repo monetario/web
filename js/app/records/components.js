@@ -34,10 +34,27 @@ var Record = React.createClass({
     return (
       <tr className="record" onClick={this.handleRecordClick}>
         <td style={{width: '50px'}}>
-          <CategoryIcon category={record.category} />
+          {(() => {
+            if (this.props.record.transaction) {
+              return (
+                <span className="category-icon btn btn-default btn-flat"
+                      style={{backgroundColor: '#444'}}>
+                  <i className="fa fa-fw fa-exchange"></i>
+                </span>
+              );
+            } else {
+              return <CategoryIcon category={record.category} />;
+            }
+          })()}
         </td>
         <td>
-          <div className="record-category-name">{record.category.name}</div>
+          {(() => {
+            if (this.props.record.transaction) {
+              return <div className="record-category-name">Transfer</div>;
+            } else  if (this.props.record.category) {
+              return <div className="record-category-name">{this.props.record.category.name}</div>;
+            }
+          })()}
           <div className="record-account-name">{record.account.name}</div>
         </td>
         <td>

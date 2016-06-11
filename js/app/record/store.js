@@ -4,7 +4,6 @@
 import React from 'react';
 import Reflux from 'reflux';
 import async from 'async';
-import axios from 'axios';
 
 import API from '../../api';
 import Actions from './actions';
@@ -121,6 +120,41 @@ var Store = Reflux.createStore({
 
   onDelete(history) {
     API.delete(`/API/v1/records/${this.record.id}/`).then((data) => {
+      history.pushState(null, `/p/records/`, {});
+    });
+  },
+
+  onAddTransaction(model, history) {
+    let postData = {
+      amount: parseFloat(model.amount),
+      source_account: model.source_account,
+      target_account: model.target_account,
+      currency: model.currency,
+      date: model.datetime,
+      description: model.description || ''
+    };
+
+    API.post('/API/v1/transactions/', postData).then((data) => {
+      history.pushState(null, `/p/records/`, {});
+    });
+  },
+
+  onSaveTransaction(model, history) {
+    let postData = {
+      amount: parseFloat(model.amount),
+      source_account: model.source_account,
+      target_account: model.target_account,
+      currency: model.currency,
+      date: model.datetime,
+      description: model.description || ''
+    };
+
+    API.put(`/API/v1/transactions/${this.record.transaction.id}/`, postData).then((data) => {
+      history.pushState(null, `/p/records/`, {});
+    });
+  },
+  onDeleteTransaction(history) {
+    API.delete(`/API/v1/transactions/${this.record.transaction.id}/`).then((data) => {
       history.pushState(null, `/p/records/`, {});
     });
   },

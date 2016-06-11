@@ -35,7 +35,7 @@ var CategoryForm = React.createClass({
         colour: this.props.category.colour,
         logo: this.props.category.logo,
         name: this.props.category.name,
-        categoryType: this.props.category.category_type.value == 0 ? 'income' : 'outcome'
+        categoryType: this.props.category.category_type.value == 0 ? 'income' : 'expense'
       };
     }
 
@@ -76,7 +76,7 @@ var CategoryForm = React.createClass({
     if (this.state.categoryType === 'income') {
       label = 'Income';
     }
-    return <label htmlFor="income-outcome">{label}</label>;
+    return <label htmlFor="income-expense">{label}</label>;
   },
 
   renderCategoryTypeLabel() {
@@ -84,7 +84,7 @@ var CategoryForm = React.createClass({
     if (this.state.categoryType === 'income') {
       label = 'Income';
     }
-    return <label htmlFor="income-outcome">{label}</label>;
+    return <label htmlFor="income-expense">{label}</label>;
   },
 
   renderSubmitButton() {
