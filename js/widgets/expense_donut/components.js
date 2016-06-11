@@ -32,11 +32,21 @@ const ExpenseDonutWidget = React.createClass({
     }
 
     let data = this.state.store.data.map((item) => {
-      return {label: this.props.categories[item.category_id].name, value: item.amount}
+      let label = 'Transactions';
+
+      if (this.props.categories[item.category_id]) {
+        label = this.props.categories[item.category_id].name;
+      }
+
+      return {label: label, value: item.amount}
     });
 
     let colors = this.state.store.data.map((item) => {
-      return this.props.categories[item.category_id].colour
+      if (this.props.categories[item.category_id]) {
+        return this.props.categories[item.category_id].colour
+      }
+
+      return '#444'
     });
 
     return <Donut name={this.props.name}
