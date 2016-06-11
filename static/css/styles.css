@@ -122,3 +122,12 @@ body {
   color: white;
   font-size: large;
 }
+
+.record-type-switcher-wrapper {
+  text-align: center;
+}
+
+
+.record-type-switcher {
+  display: inline-block;
+}

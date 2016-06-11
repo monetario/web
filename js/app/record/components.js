@@ -173,17 +173,17 @@ var RecordForm = React.createClass({
     if (this.props.record.id) {
       return (
         <div className="row">
-          <div className="col-lg-12">
+          <div className="col-lg-12 record-type-switcher-wrapper">
               {(() => {
                 if (this.state.recordType === 'transaction') {
                   return (
-                    <div className="btn-group">
+                    <div className="btn-group record-type-switcher">
                       {this.renderRecordTypeTransactionButton()}
                     </div>
                   );
                 } else {
                   return (
-                    <div className="btn-group">
+                    <div className="btn-group record-type-switcher">
                       {this.renderRecordTypeIncomeButton()}
                       {this.renderRecordTypeExpenseButton()}
                     </div>
@@ -196,8 +196,8 @@ var RecordForm = React.createClass({
     } else {
       return (
         <div className="row">
-          <div className="col-lg-12">
-            <div className="btn-group">
+          <div className="col-lg-12 record-type-switcher-wrapper">
+            <div className="btn-group record-type-switcher">
               {this.renderRecordTypeIncomeButton()}
               {this.renderRecordTypeExpenseButton()}
               {this.renderRecordTypeTransactionButton()}
