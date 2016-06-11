@@ -367,7 +367,11 @@ var RecordForm = React.createClass({
                     <label htmlFor="source_account">From account</label>
                     <SelectField
                       name="source_account"
-                      options={this.props.accounts.map((account) => {
+                      options={this.props.accounts.filter((account) => {
+                        if (account.id !== this.state.target_account) {
+                          return true;
+                        }
+                      }).map((account) => {
                         return {value: account.id, label: account.name};
                       })}
                       style={{margin: 0, padding: 0}}
@@ -380,7 +384,11 @@ var RecordForm = React.createClass({
                     <label htmlFor="target_account">To account</label>
                     <SelectField
                       name="target_account"
-                      options={this.props.accounts.map((account) => {
+                      options={this.props.accounts.filter((account) => {
+                        if (account.id !== this.state.source_account) {
+                          return true;
+                        }
+                      }).map((account) => {
                         return {value: account.id, label: account.name};
                       })}
                       value={this.state.target_account}
