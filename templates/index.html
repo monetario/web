@@ -46,9 +46,9 @@
 
 </body>
 {#<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>#}
-<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-<script src="//cdn.jsdelivr.net/morris.js/0.4.1/morris.min.js"></script>
+<script src="{{ url_for('static', filename='js/raphael-min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery-1.8.2.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/morris.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/dist/vendors.js') }}"></script>
 <script src="{{ url_for('static', filename='js/dist/index.js') }}"></script>
 
