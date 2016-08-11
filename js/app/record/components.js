@@ -86,6 +86,8 @@ var RecordForm = React.createClass({
     });
   },
   handleSubmit: function (model) {
+    model.recordType = this.state.recordType;
+
     if (this.state.recordType === 'transaction') {
       if (this.props.record.id) {
         Actions.saveTransaction(model, this.history);
