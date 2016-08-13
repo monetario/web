@@ -14,7 +14,8 @@ var App = React.createClass({
 
   getInitialState() {
     return {
-      windowMinHeight: undefined
+      windowMinHeight: undefined,
+      current_user: undefined
     };
   },
 
@@ -27,6 +28,9 @@ var App = React.createClass({
   componentWillMount() {
     API.onChange = this.updateAuth;
     API.login();
+    API.get('/API/v1/users/current/').then((data) => {
+      this.setState({current_user: data});
+    });
   },
 
   componentDidMount() {
@@ -53,6 +57,15 @@ var App = React.createClass({
       document.body.classList.add('sidebar-open');
       Cookies.set('sidebar-collapse', true);
     }
+  },
+
+  renderUser() {
+    if (!this.state.current_user) {
+      return '';
+    }
+    return (
+      <span>{this.state.current_user.first_name} {this.state.current_user.last_name}</span>
+    );
   },
 
   render: function() {
@@ -96,14 +109,14 @@ var App = React.createClass({
                 <li className="dropdown user user-menu">
                   <a href="#" className="dropdown-toggle" data-toggle="dropdown">
                     <img src="/static/img/user2-160x160.jpg" className="user-image" alt="User Image" />
-                    <span className="hidden-xs">Alexander Pierce</span>
+                    <span className="hidden-xs">{this.renderUser()}</span>
                   </a>
                   <ul className="dropdown-menu">
 
                     <li className="user-header">
                       <img src="/static/img/user2-160x160.jpg" className="img-circle" alt="User Image" />
                       <p>
-                        Alexander Pierce - Web Developer
+                        {this.renderUser()}
                         <small>Member since Nov. 2012</small>
                       </p>
                     </li>
@@ -146,7 +159,7 @@ var App = React.createClass({
                 <img src="/static/img/user2-160x160.jpg" className="img-circle" alt="User Image" />
               </div>
               <div className="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>{this.renderUser()}</p>
                 <a href="#"><i className="fa fa-circle text-success"></i> Online</a>
               </div>
             </div>
